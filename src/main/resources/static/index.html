@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listagem de Pássaros</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+	 <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <h1 class="navbar-brand mx-auto" >Criatório Boa Estação - Gadotti</h1>
+        </div>
+    </nav>
+    <form id="filtroForm">
+        <label for="filtroEspecie">Especie:</label>
+        <select id="filtroEspecie" name="filtroEspecie">
+        	<option value="TODAS">Selecione a espécie</option>
+        </select><br>
+        
+        <label for="filtroSexo">Sexo:</label>
+        <select id="filtroSexo" name="filtroSexo">
+            <option value="TODOS">Todos</option>
+            <option value="MACHO">Macho</option>
+            <option value="FEMEA">Fêmea</option>
+            <option value="DESCONHECIDO">Desconhecido</option>
+        </select><br>
+
+        <label for="dataNascimentoInicial">Data Nascimento Inicial:</label>
+        <input type="date" id="dataNascimentoInicial" name="dataNascimentoInicial"><br>
+
+        <label for="dataNascimentoFinal">Data Nascimento Final:</label>
+        <input type="date" id="dataNascimentoFinal" name="dataNascimentoFinal"><br>
+        <label for="filtroCriatorio">Criatório:</label>
+        <select id="filtroCriatorio" name="filtroCriatorio">
+        	<option value="BOA">BOA</option>
+        	<option value="OUTRO">OUTRO</option>
+        </select><br>
+        <input type="submit" value="Filtrar" id="btnFiltrar">
+        <button id="btn_cadastrarPassaro">Novo</button>
+        <button id="printListaPassaros">Imprimir</button>
+    </form>
+    
+
+    <table id="tabelaPassaros" class="table table-striped table-responsive-md">
+        <thead>
+	        <tr>
+	        	<th id="id" style="display:none;">ID</th>
+	        	<th>Nome</th>
+	        	<th>Número Anilha</th>
+	            <th>Especie</th>
+	            <th>Nasc.</th>
+				<th>Sexo</th>
+	            <th>Sexado</th>
+	            <th>Info</th>
+	            <th>Editar</th>
+	        </tr>
+        </thead>
+        <tbody id="corpoTabelaPassaros"></tbody>
+    </table>
+</body>
+</html>

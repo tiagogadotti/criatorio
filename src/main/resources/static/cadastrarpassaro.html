@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cadastro de Pássaro</title>
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="cadastrarpassaro.js"></script>
+</head>
+<body>
+	 <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <h1 class="navbar-brand mx-auto" >Criatório Boa Estação - Gadotti</h1>
+        </div>
+    </nav>
+	<h2  class=" text-center mx-auto">Cadastro de Pássaros</h2>
+	<div class="container">
+		<form id="passaroForm" class="form-group">
+			<div class="row">
+				<div class="col-md-6">
+					<label for="nome">Nome:</label><br> <input type="text"
+						id="nome" name="nome"><br> <label for="especie">Espécie:</label><br>
+					<select id="especie" name="especie">
+						<option value="">Selecione uma espécie</option>
+					</select> <a href="cadastrarespecie.html" class="btn btn-primary">Nova</a><br>
+					<br> <label for="dataNascimento">Data de Nascimento:</label><br>
+					<input type="date" id="dataNascimento" name="dataNascimento"><br>
+					<label for="sexo">Sexo:</label><br> <select id="sexo"
+						name="sexo">
+						<option value="">Selecione o sexo</option>
+						<option value="MACHO">Macho</option>
+						<option value="FEMEA">Fêmea</option>
+						<option value="DESCONHECIDO">Desconhecido</option>
+					</select> <br>
+				</div>
+				<div class="col-md-6">
+					<label for="pai">Pai:</label><br> <select id="pai" name="pai">
+						<option value="">Selecione</option>
+					</select> <br> <label for="mae">Mãe:</label><br> <select id="mae"
+						name="mae">
+						<option value="">Selecione</option>
+					</select> <br> <label for="numeroAnilha">Número da Anilha:</label><br>
+					<input type="number" id="numeroAnilha" name="numeroAnilha"><br>
+					<label for="sexado">Sexado:</label><br> <input type="checkbox"
+						id="sexado" name="sexado"><br> <label
+						for="numeroMarcacao">Número de Marcação:</label><br> <input
+						type="number" id="numeroMarcacao" name="numeroMarcacao"><br>
+					<label for="criatorio">Criatório:</label><br> <select
+						id="criatorio" name="criatorio">
+						<option value="">Selecione</option> 
+						<option value="BOA">BOA</option>
+						<option value="OUTRO">OUTRO</option>
+						</select> 
+				</div>
+			</div>
+			<br> <input type="submit" value="Salvar" class="btn btn-primary">
+			<a href="index.html" class="btn btn-primary">Voltar</a>
+		</form>
+
+	</div>
+</body>
+</html>
