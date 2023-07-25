@@ -2,11 +2,10 @@ $(document).ready(function() {
     getEspecie();
     let editMode = sessionStorage.getItem('cadastrarpassaro_editmode');
     editMode = editMode === 'true';
-    
+    console.log('editmode: ' +editMode);
     if(editMode){
 		let passaroId = sessionStorage.getItem('cadastrarpassaro_passaro_id');
 		passaroId = Number.parseInt(passaroId);
-		
 		$.ajax({
 			url: '/api/passaros/getPassaroById',
 			type: 'GET',
@@ -48,7 +47,12 @@ $(document).ready(function() {
 
     $('#passaroForm').on('submit', function(event) {
         event.preventDefault();
-		let passaroId = sessionStorage.getItem('cadastrarpassaro_passaro_id');
+        let editMode = sessionStorage.getItem('cadastrarpassaro_editmode');
+        let passaroId;
+        if (editMode == 'true')
+			passaroId = sessionStorage.getItem('cadastrarpassaro_passaro_id');
+		else
+			passaroId = 0;
         var passaro = {
 			id: passaroId,
             nome: $('#nome').val(),
