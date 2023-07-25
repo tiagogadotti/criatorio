@@ -9,7 +9,6 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.gadotti.criatorio.dto.*;
-import com.gadotti.criatorio.model.Sexo;
 import com.gadotti.criatorio.service.*;
 @RestController
 @RequestMapping("/api/passaros")
