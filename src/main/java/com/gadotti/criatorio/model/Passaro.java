@@ -15,6 +15,7 @@ public class Passaro {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Especie especie;
 	private LocalDate dataNascimento;
+	private LocalDate dataRegistro;
 	@ManyToOne
 	private Passaro pai;
 	@ManyToOne
@@ -23,6 +24,7 @@ public class Passaro {
 	private Sexo sexo;
 	@Column(unique=true)
 	private Long numeroAnilha;
+	@Transient
 	private Boolean sexado;
 	private Long numeroMarcacao;
 	private LocalDateTime horaInclusao = LocalDateTime.now();

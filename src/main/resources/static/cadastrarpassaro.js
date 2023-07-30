@@ -2,7 +2,6 @@ $(document).ready(function() {
     getEspecie();
     let editMode = sessionStorage.getItem('cadastrarpassaro_editmode');
     editMode = editMode === 'true';
-    console.log('editmode: ' +editMode);
     if(editMode){
 		let passaroId = sessionStorage.getItem('cadastrarpassaro_passaro_id');
 		passaroId = Number.parseInt(passaroId);
@@ -17,6 +16,7 @@ $(document).ready(function() {
 				$('#nome').val(passaro.nome);
 				$('#especie').val(passaro.especie);
 				$('#dataNascimento').val(passaro.dataNascimento);
+				$('#dataRegistro').val(passaro.dataRegistro);
 				setPai(passaro.especie).done(function(){
 					$('#pai').val(passaro.pai);
 				});
@@ -42,7 +42,30 @@ $(document).ready(function() {
 		setPai(especie);
     	setMae(especie);
 	});
+     $('#btn_voltar').click(() =>{
+		 sessionStorage.removeItem('cadastrarpassaro_passaro_id');
+		 window.location.href="index.html";
+	 })
     
+    $('#btn_excluir').click(() =>{
+		 confirm('Deseja mesmo excluir ' +$('#nome').val() + ' ?');
+		 $.ajax({
+            url: '/api/passaros/deletePassaro',
+            type: 'DELETE',
+            dataType: 'text',
+            contentType: 'application/json',
+            data: JSON.stringify({"id": sessionStorage.getItem('cadastrarpassaro_passaro_id')}),
+            success: function(response) {
+				sessionStorage.removeItem('cadastrarpassaro_passaro_id');
+				window.location.href="index.html";
+				console.log(response);               
+            },
+            error: function(error) {
+				window.alert("Erro ao exluir. Verifique se o pássaro não está cadastrado como PAI/MÃE de outro pássaro.");
+                console.error('Erro ao deletar pássaro:', error);
+            }
+        });
+	})
     
 
     $('#passaroForm').on('submit', function(event) {
@@ -58,6 +81,7 @@ $(document).ready(function() {
             nome: $('#nome').val(),
             especie: $('#especie').val(),
             dataNascimento: $('#dataNascimento').val(),
+            dataRegistro: $('#dataRegistro').val(),
             sexo: $('#sexo').val(),
             numeroAnilha: $('#numeroAnilha').val(),
             sexado: $('#sexado').is(':checked'),
@@ -66,7 +90,7 @@ $(document).ready(function() {
             mae: $('#mae').val(),
             criatorio: $('#criatorio').val()
         };
-
+       
         $.ajax({
             url: '/api/passaros/setPassaro',
             type: 'POST',

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.gadotti.criatorio.dto.*;
@@ -30,10 +32,13 @@ public class PassaroService {
 	@Autowired
 	private final PassaroRepository passaroRepository;
 	private final EspecieRepository especieRepository;
+	@Autowired
+	private Environment env;
 
-	PassaroService(PassaroRepository passaroRepository, EspecieRepository especieRepository) {
+	PassaroService(PassaroRepository passaroRepository, EspecieRepository especieRepository, Environment env) {
 		this.passaroRepository = passaroRepository;
 		this.especieRepository = especieRepository;
+		this.env = env;
 	}
 
 	public PassaroDTO getPassaroById(Long id) {
@@ -129,11 +134,23 @@ public class PassaroService {
 			if (mae.isPresent()) {
 				passaro.setMae(mae.get());
 			}
+			System.out.println("registo" + passaro.getDataRegistro());
+			System.out.println("nascimento" + passaro.getDataNascimento());
+			if (passaro.getDataNascimento() != null && passaro.getDataRegistro() == null) {
+				passaro.setDataRegistro(passaro.getDataNascimento());
+			}
+			if (passaro.getDataRegistro() != null && passaro.getDataNascimento() == null) {
+				passaro.setDataNascimento(passaro.getDataRegistro());
+			}
 			passaroRepository.save(passaro);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	
+	public void deletePassaroById(Long id) throws IllegalArgumentException,PSQLException {
+		passaroRepository.deleteById(id);
 	}
 
 	private Passaro buscaPassaro(Long id) {
@@ -220,9 +237,11 @@ public class PassaroService {
 
 	public String printCollectionPassaros(List<PassaroDTO> listPassaroDTO) {
 		com.itextpdf.text.Document document = new com.itextpdf.text.Document(PageSize.A4.rotate());
-
-		String reportsFolder = "C:/var/www/criatorio/reports/";
-		String fileName = "relatorioPassaros" + LocalDateTime.now().toString().replaceAll("-|:|\\.", "_") + ".pdf";
+		
+		
+		
+		String reportsFolder = getReportsFolder();		
+		String fileName = "/relatorioPassaros" + LocalDateTime.now().toString().replaceAll("-|:|\\.", "_") + ".pdf";
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(reportsFolder + fileName));
 			document.open();
@@ -296,5 +315,15 @@ public class PassaroService {
 			de.printStackTrace();
 		}
 		return fileName;
+	}
+	
+	private String getReportsFolder() {
+		String[] properties = env.getProperty("spring.web.resources.static-locations", String[].class);
+		for (String property : properties) {
+			if (property.contains("repostsfolder:")){
+				return property.replace("repostsfolder:", "");
+			}
+		}
+		return "";
 	}
 }

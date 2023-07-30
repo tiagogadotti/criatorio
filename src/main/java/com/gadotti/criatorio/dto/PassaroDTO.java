@@ -23,6 +23,8 @@ public class PassaroDTO {
 	private Long numeroMarcacao;
 	@DisplayName("Nasc.")
 	private LocalDate dataNascimento;
+	@DisplayName("Reg.")
+	private LocalDate dataRegistro;
 	@DisplayName("Sexo")
 	private String sexo;
 	@DisplayName("Pai")
@@ -42,6 +44,7 @@ public class PassaroDTO {
 			dto.setEspecie(p.getEspecie().getNome());
 		}
 		dto.setDataNascimento(p.getDataNascimento());
+		dto.setDataRegistro(p.getDataRegistro());
 		if (p.getPai() != null) {
 			dto.setPai(p.getPai().getNome());
 		}
@@ -66,6 +69,7 @@ public class PassaroDTO {
 		p.setNome(this.getNome());
 		p.setEspecie(new Especie(this.getEspecie()));
 		p.setDataNascimento(this.getDataNascimento());
+		p.setDataRegistro(this.getDataRegistro());
 		p.setSexo(Sexo.valueOf(getSexo()));
 		p.setNumeroAnilha(this.getNumeroAnilha());
 		p.setSexado(this.getSexado());

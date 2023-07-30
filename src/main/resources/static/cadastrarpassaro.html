@@ -30,12 +30,14 @@
 					</select> <a href="cadastrarespecie.html" class="btn btn-primary">Nova</a><br>
 					<br> <label for="dataNascimento">Data de Nascimento:</label><br>
 					<input type="date" id="dataNascimento" name="dataNascimento"><br>
+					<label for="dataRegistro">Data de Registro:</label><br>
+					<input type="date" id="dataRegistro" name="dataRegistro"><br>
 					<label for="sexo">Sexo:</label><br> <select id="sexo"
 						name="sexo">
 						<option value="">Selecione o sexo</option>
 						<option value="MACHO">Macho</option>
 						<option value="FEMEA">Fêmea</option>
-						<option value="DESCONHECIDO">Desconhecido</option>
+						<option value="INDEFINIDO">Indefinido</option>
 					</select> <br>
 				</div>
 				<div class="col-md-6">
@@ -59,7 +61,8 @@
 				</div>
 			</div>
 			<br> <input type="submit" value="Salvar" class="btn btn-primary">
-			<a href="index.html" class="btn btn-primary">Voltar</a>
+			<a id="btn_excluir" class="btn btn-danger">Excluir</a>
+			<a id="btn_voltar" class="btn btn-primary">Voltar</a>
 		</form>
 
 	</div>

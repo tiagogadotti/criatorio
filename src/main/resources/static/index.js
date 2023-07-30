@@ -79,8 +79,8 @@ function getPassaro() {
 					linha.append($('<td>').text(passaro.numeroAnilha));
 					linha.append($('<td>').text(passaro.especie));
 					linha.append($('<td>').text(convertDate(passaro.dataNascimento)));
-					linha.append($('<td>').text(passaro.sexo == 'MACHO' ? 'M' : passaro.sexo == 'FEMEA' ? 'F' : 'D'));
-					linha.append($('<td>').text(passaro.sexado == true ? 'S' : 'N'));
+					linha.append($('<td>').text(convertDate(passaro.dataRegistro)));
+					linha.append($('<td>').text(passaro.sexo == 'MACHO' ? 'M' : passaro.sexo == 'FEMEA' ? 'F' : 'I'));
 					let infoBtn = $('<a>').attr('href', 'fichapassaro.html').text('Info');
 					infoBtn.on('click', function() {
 						sessionStorage.setItem('cadastrarpassaro_passaro_id', passaro.id);
@@ -136,6 +136,7 @@ function checkFilters(passaro) {
 
 function convertDate(inputFormat) {
 	let date = new Date(inputFormat);
+	date.setHours(date.getHours() + 3);
 	let dd = date.getDate();
 	let mm = date.getMonth() + 1;
 	let yyyy = date.getFullYear();
