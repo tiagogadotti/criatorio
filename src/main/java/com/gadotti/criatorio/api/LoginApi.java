@@ -19,26 +19,21 @@ public class LoginApi {
 	@Autowired
 	private final UsuarioRepository usuarioRepository;
 	
-	private static final Logger log = LogManager.getLogger(LoginApi.class);
+	//private static final Logger log = LogManager.getLogger(LoginApi.class);
 	
 	LoginApi(UsuarioRepository usuarioRepository) {
 		this.usuarioRepository = usuarioRepository;
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
-		log.info("username: {}", username);
-		log.info("password: {}", password);
-		
+	public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {		
 		Usuario usuario = usuarioRepository.findByUsernameAndPassword(username, password);		
 		if( usuario != null) {
-			System.out.println("usuario:" +usuario);
 			UUID newToken = UUID.randomUUID();
-			usuario.setToken(newToken);
+			usuario.setToken(newToken.toString());
 			LocalDateTime tokenExpiration = LocalDateTime.now().plusSeconds(600); 
 		
 			usuario.setTokenExpiration(tokenExpiration);
-			log.info("usuario: {}", usuario);
 			usuarioRepository.save(usuario);
 			Map<String, String> json = new HashMap<String, String>();
 			json.put("token", newToken.toString());
@@ -51,7 +46,7 @@ public class LoginApi {
 	@PostMapping("checkToken")
 	public ResponseEntity<Boolean>checkToken(String token) {
 	
-		Usuario usuario = usuarioRepository.findByToken(UUID.fromString(token));
+		Usuario usuario = usuarioRepository.findByToken(token);
 		if (usuario == null) { 
 			return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);
 		}

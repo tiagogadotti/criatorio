@@ -11,7 +11,8 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(response) {
-				if (response.token != undefined && response.token != null) {
+				console.log(response);
+				if (response.token == undefined || response.token == null) {
 					window.location.href = "login.html";
 				}
 				sessionStorage.setItem('token', response.token);
@@ -20,7 +21,7 @@ $(document).ready(function() {
 			},
 			error: function(error) {
 				console.log(error);
-				window.location.href = "login.html";
+				window.location.href="index.html";
 			}
 		})
 

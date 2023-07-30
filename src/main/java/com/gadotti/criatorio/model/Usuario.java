@@ -12,7 +12,7 @@ public class Usuario {
 	@Id
 	private String username;
 	private String password;
-	private UUID token;
+	private String token;
 	@Column(name = "token_expiration")	
 	private LocalDateTime tokenExpiration;
 }
