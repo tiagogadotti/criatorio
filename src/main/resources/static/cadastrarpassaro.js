@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	checkToken();
+	
     getEspecie();
     let editMode = sessionStorage.getItem('cadastrarpassaro_editmode');
     editMode = editMode === 'true';
@@ -209,3 +211,5 @@ function setMae(especie){
         }
     });
 }
+
+

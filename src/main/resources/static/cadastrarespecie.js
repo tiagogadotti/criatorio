@@ -1,5 +1,5 @@
 $(document).ready( () => {
-
+	checkToken();
     $("#especieForm").on('submit', (event) => {
         event.preventDefault();
 

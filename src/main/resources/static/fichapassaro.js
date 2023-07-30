@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	checkToken();
     let passaroId = sessionStorage.getItem('cadastrarpassaro_passaro_id');
     passaroId = Number.parseInt(passaroId);
 	$.ajax({

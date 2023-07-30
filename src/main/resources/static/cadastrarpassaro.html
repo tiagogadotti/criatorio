@@ -10,15 +10,17 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="login.js"></script>
 <script src="cadastrarpassaro.js"></script>
 </head>
 <body>
-	 <nav class="navbar navbar-light bg-light">
-        <div class="container">
-            <h1 class="navbar-brand mx-auto" >Criatório Boa Estação - Gadotti</h1>
-        </div>
-    </nav>
-	<h2  class=" text-center mx-auto">Cadastro de Pássaros</h2>
+	<nav class="navbar navbar-light bg-light">
+		<div class="container">
+			<h1 class="navbar-brand mx-auto">Criatório Boa Estação -
+				Gadotti</h1>
+		</div>
+	</nav>
+	<h2 class=" text-center mx-auto">Cadastro de Pássaros</h2>
 	<div class="container">
 		<form id="passaroForm" class="form-group">
 			<div class="row">
@@ -30,8 +32,8 @@
 					</select> <a href="cadastrarespecie.html" class="btn btn-primary">Nova</a><br>
 					<br> <label for="dataNascimento">Data de Nascimento:</label><br>
 					<input type="date" id="dataNascimento" name="dataNascimento"><br>
-					<label for="dataRegistro">Data de Registro:</label><br>
-					<input type="date" id="dataRegistro" name="dataRegistro"><br>
+					<label for="dataRegistro">Data de Registro:</label><br> <input
+						type="date" id="dataRegistro" name="dataRegistro"><br>
 					<label for="sexo">Sexo:</label><br> <select id="sexo"
 						name="sexo">
 						<option value="">Selecione o sexo</option>
@@ -54,15 +56,15 @@
 						type="number" id="numeroMarcacao" name="numeroMarcacao"><br>
 					<label for="criatorio">Criatório:</label><br> <select
 						id="criatorio" name="criatorio">
-						<option value="">Selecione</option> 
+						<option value="">Selecione</option>
 						<option value="BOA">CBE</option>
 						<option value="OUTRO">OUTRO</option>
-						</select> 
+					</select>
 				</div>
 			</div>
 			<br> <input type="submit" value="Salvar" class="btn btn-primary">
-			<a id="btn_excluir" class="btn btn-danger">Excluir</a>
-			<a id="btn_voltar" class="btn btn-primary">Voltar</a>
+			<a id="btn_excluir" class="btn btn-danger">Excluir</a> <a
+				id="btn_voltar" class="btn btn-primary">Voltar</a>
 		</form>
 
 	</div>
