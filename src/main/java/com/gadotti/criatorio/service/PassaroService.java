@@ -237,9 +237,6 @@ public class PassaroService {
 
 	public String printCollectionPassaros(List<PassaroDTO> listPassaroDTO) {
 		com.itextpdf.text.Document document = new com.itextpdf.text.Document(PageSize.A4.rotate());
-		
-		
-		
 		String reportsFolder = getReportsFolder();		
 		String fileName = "/relatorioPassaros" + LocalDateTime.now().toString().replaceAll("-|:|\\.", "_") + ".pdf";
 		try {
@@ -320,8 +317,8 @@ public class PassaroService {
 	private String getReportsFolder() {
 		String[] properties = env.getProperty("spring.web.resources.static-locations", String[].class);
 		for (String property : properties) {
-			if (property.contains("repostsfolder:")){
-				return property.replace("repostsfolder:", "");
+			if (property.contains("reportsfolder:")){
+				return property.replace("reportsfolder:", "");
 			}
 		}
 		return "";
