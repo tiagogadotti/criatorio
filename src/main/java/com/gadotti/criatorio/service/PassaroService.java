@@ -317,8 +317,8 @@ public class PassaroService {
 	private String getReportsFolder() {
 		String[] properties = env.getProperty("spring.web.resources.static-locations", String[].class);
 		for (String property : properties) {
-			if (property.contains("reportsfolder:")){
-				return property.replace("reportsfolder:", "");
+			if (property.contains("file:")){
+				return property.replace("file:", "");
 			}
 		}
 		return "";
